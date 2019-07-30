@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import Square from './componentes/square';
 
-class App extends Component{
-  render() {
+class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      nome: 'nome inicial'
+    }
+  }
+
+  render () {
     return(
-      <div className='Container'>
-        <Square color='blue' />
-      </div>
-      
+      <div onClick={() => (this.setState({
+        nome: 'nome alterado quando clicado'
+      }))}>{this.state.nome}</div>
     )
   }
 }
 
-
-
-export default App;
+export default App
