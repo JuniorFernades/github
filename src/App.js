@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import PlacarCasa from './componentes/placar-casa';
-import PlacarVisitante from './componentes/placar-visitante';
 import Search from './componentes/search';
+import Header from './componentes/header';
+import Placar from './componentes/placar';
+import Info from './componentes/info';
 
 
 class App extends Component {
@@ -16,13 +17,30 @@ class App extends Component {
   }
   
   render() {
-    console.log('render')
     return(
-      <div>
-        <PlacarCasa onClick={() => this.setState({ placarCasa: this.state.placarCasa + 1})} placar={this.state.placarCasa} />
-        <PlacarVisitante onCLick={() => this.setState({placarVisitante: this.state.placarVisitante + 1})} placar={this.state.placarVisitante}/>
-        <Search />
-      </div>
+        <div className='wrapper'>
+          <Header />
+          <div className='container'>
+          <Placar 
+            onClick={() => this.setState({ placarCasa: this.state.placarCasa + 1})} 
+            titulo='Casa' 
+            time='Confiança' 
+            placar={this.state.placarCasa} 
+          />
+
+          <Info />
+
+          <Placar 
+            onClick={() => this.setState({ placarVisitante: this.state.placarVisitante + 1})} 
+            titulo='visitante' 
+            time='Sergipe' 
+            placar={this.state.placarVisitante} 
+          />
+        </div>
+        <div className="search">
+          <Search />
+        </div>
+        </div>
     )
   }
 }

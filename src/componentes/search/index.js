@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import './style.css'
+
 export default class Search extends Component {
     constructor(props) {
       super(props);
@@ -17,10 +19,8 @@ export default class Search extends Component {
   
     addItem() {
       let items = this.state.items;
-      items.push(this.state.inputValue);
-      this.setState({
-        items
-      });
+      items.unshift(this.state.inputValue);
+      this.setState({items, inputValue:''});
     }
   
     listItems() {
@@ -30,9 +30,9 @@ export default class Search extends Component {
           {
             items.map((val, index) => {
               return (
-                <li key={index}>
-                  { val }
-                </li>
+                <article key={index}>
+                  <p>{ val }</p>
+                </article>
               );
             })
           }
@@ -42,10 +42,14 @@ export default class Search extends Component {
   
     render() {
       return (
-        <div>
-          <input type="text" onChange={ (e) => this.onInputChange(e) } />
-          <button onClick={ () => this.addItem() }>Add item</button>
-          { this.listItems() }
+        <div className='searchContent'>
+          <input placeholder='Digite um comentario' id="myInput" type="text" value={this.state.inputValue} onChange={ (e) => this.onInputChange(e) } />
+          <div className="buttonCad">
+            <button onClick={ () => this.addItem() }>ADICIONAR COMENTARIO</button>
+          </div>
+          <div className='comentarios'>
+            { this.listItems() }
+          </div>
         </div>
       );
     }
